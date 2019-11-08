@@ -1,0 +1,11 @@
+#!groovy
+
+@Library("Infrastructure")
+
+def product = 'reform-scan'
+
+withInfraPipeline(product) {
+
+  enableSlackNotifications('#bsp-build-notices')
+
+}
