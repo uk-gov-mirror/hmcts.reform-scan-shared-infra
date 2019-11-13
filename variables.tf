@@ -14,6 +14,8 @@ variable "env" {}
 
 variable "subscription" {}
 
+variable "mgmt_subscription_id" {}
+
 variable "common_tags" {
   type = "map"
 }
@@ -27,4 +29,12 @@ variable "jenkins_AAD_objectId" {
 
 variable "managed_identity_object_id" {
   default = ""
+}
+
+variable "external_cert_name" {}
+
+variable "external_hostname" {
+  type        = "string"
+  default     = "platform.hmcts.net"
+  description = "Ending of hostname. Subdomains will be resolved in declaration of locals"
 }
