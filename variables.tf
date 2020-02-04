@@ -38,9 +38,3 @@ variable "external_hostname" {
   default     = "platform.hmcts.net"
   description = "Ending of hostname. Subdomains will be resolved in declaration of locals"
 }
-
-variable "deployment_namespace" {
-  default = ""
-}
-
-variable "component" {}
