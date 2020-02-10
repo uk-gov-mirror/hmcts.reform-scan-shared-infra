@@ -4,7 +4,7 @@ module "blob-router-service-liveness-alert" {
   app_insights_name = "${azurerm_application_insights.appinsights.name}"
 
   enabled    = "${var.env == "prod"}"
-  alert_name = "Blob_Router_Service_liveness_-_BSP"
+  alert_name = "Blob_Router_Service_liveness"
   alert_desc = "Triggers when blob router service looks like being down within a 30 minutes window timeframe."
 
   app_insights_query = <<EOF

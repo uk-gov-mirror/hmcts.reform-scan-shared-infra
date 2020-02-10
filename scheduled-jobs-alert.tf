@@ -4,7 +4,7 @@ module "blob-dispatcher-alert" {
   app_insights_name = "${azurerm_application_insights.appinsights.name}"
 
   enabled    = "${var.env == "prod"}"
-  alert_name = "Reform_Blob_Dispatcher_-_BSP"
+  alert_name = "Dispatch_Files"
   alert_desc = "Triggers when no logs from blob-dispatcher job found within timeframe."
 
   app_insights_query = "traces | where message startswith 'Started blob-dispatcher job'"
@@ -25,7 +25,7 @@ module "delete-dispatched-files-alert" {
   app_insights_name = "${azurerm_application_insights.appinsights.name}"
 
   enabled    = "${var.env == "prod"}"
-  alert_name = "Reform_Delete_Dispatched_Files_-_BSP"
+  alert_name = "Delete_Dispatched_Files"
   alert_desc = "Triggers when no logs from delete-dispatched-files job found within timeframe."
 
   app_insights_query = "traces | where message startswith 'Started delete-dispatched-files job'"
@@ -46,7 +46,7 @@ module "handle-rejected-files-alert" {
   app_insights_name = "${azurerm_application_insights.appinsights.name}"
 
   enabled    = "${var.env == "prod"}"
-  alert_name = "Reform_Handle_Rejected_Files_-_BSP"
+  alert_name = "Handle_Rejected_Files"
   alert_desc = "Triggers when no logs from handle-rejected-files job found within timeframe."
 
   app_insights_query = "traces | where message startswith 'Started handle-rejected-files job'"

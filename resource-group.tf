@@ -1,5 +1,5 @@
 locals {
-  bsp_product = "bulk-scan"
+  product = "reform-scan"
   tags        = "${merge(var.common_tags, map("Team Contact", "#rbs"))}"
 }
 
@@ -10,8 +10,8 @@ resource "azurerm_resource_group" "rg" {
   tags = "${local.tags}"
 }
 
-resource "azurerm_resource_group" "bulkscan_rg" {
-  name     = "${local.bsp_product}-${var.env}"
+resource "azurerm_resource_group" "reform_scan_rg" {
+  name     = "${local.product}-${var.env}"
   location = "${var.location}"
 
   tags = "${local.tags}"
