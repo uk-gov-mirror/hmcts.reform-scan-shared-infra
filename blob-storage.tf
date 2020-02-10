@@ -7,7 +7,7 @@ provider "azurerm" {
 locals {
   stripped_product  = "${replace(var.product, "-", "")}"
   account_name      = "${local.stripped_product}${var.env}"
-  mgmt_network_name = "${var.subscription == "prod" || var.subscription == "nonprod" ? "mgmt-infra-prod" : "mgmt-infra-sandbox"}"
+  mgmt_network_name = "${var.subscription == "preview" ? "mgmt-infra-sandbox" : "mgmt-infra-prod"}"
   prod_hostname     = "${local.stripped_product}.${var.external_hostname}"
   nonprod_hostname  = "${local.stripped_product}.${var.env}.${var.external_hostname}"
   external_hostname = "${ var.env == "prod" ? local.prod_hostname : local.nonprod_hostname}"
