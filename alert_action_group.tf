@@ -10,7 +10,7 @@ module "alert-action-group" {
 
   resourcegroup_name     = "${azurerm_resource_group.rg.name}"
   action_group_name      = "Reform Scan Alert (${var.env})"
-  short_name             = "Reform_Scan_Alert"
+  short_name             = "Reform_Scan"
   email_receiver_name    = "Reform Scan Alerts And Monitoring"
   email_receiver_address = "${data.azurerm_key_vault_secret.source_reform_scan_email_secret.value}"
 }
