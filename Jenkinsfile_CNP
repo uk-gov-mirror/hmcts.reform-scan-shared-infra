@@ -6,6 +6,10 @@ def product = 'reform-scan'
 
 withInfraPipeline(product) {
 
+  before('buildinfra:prod') {
+    error 'Deliberately breaking pipeline to prevent prod deployment - checking critical changes in aat first'
+  }
+
   enableSlackNotifications('#bsp-build-notices')
 
 }
