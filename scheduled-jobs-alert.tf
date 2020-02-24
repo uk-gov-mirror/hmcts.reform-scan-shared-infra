@@ -45,7 +45,7 @@ module "handle-rejected-files-alert" {
   location          = "${azurerm_application_insights.appinsights.location}"
   app_insights_name = "${azurerm_application_insights.appinsights.name}"
 
-  enabled    = "${var.env == "prod"}"
+  enabled    = "false"
   alert_name = "Handle_Rejected_Files"
   alert_desc = "Triggers when no logs from handle-rejected-files job found within timeframe."
 
@@ -69,7 +69,7 @@ module "delete-rejected-files-alert" {
   location          = "${azurerm_application_insights.appinsights.location}"
   app_insights_name = "${azurerm_application_insights.appinsights.name}"
 
-  enabled    = "${var.env == "prod"}"
+  enabled    = "false"
   alert_name = "Delete_Rejected_Files"
   alert_desc = "Triggers when no logs from delete-rejected-files job found within timeframe."
 
