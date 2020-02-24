@@ -63,3 +63,27 @@ module "handle-rejected-files-alert" {
   trigger_threshold          = 0
   resourcegroup_name         = "${azurerm_resource_group.rg.name}"
 }
+
+module "delete-rejected-files-alert" {
+  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  location          = "${azurerm_application_insights.appinsights.location}"
+  app_insights_name = "${azurerm_application_insights.appinsights.name}"
+
+  enabled    = "${var.env == "prod"}"
+  alert_name = "Delete_Rejected_Files"
+  alert_desc = "Triggers when no logs from delete-rejected-files job found within timeframe."
+
+  app_insights_query = "traces | where message startswith 'Started delete-rejected-files job'"
+
+  # running every hour and checking for 25 hours time window ensures early alert
+  frequency_in_minutes       = 60
+  # 60 * 25 hours = 1500 min
+  time_window_in_minutes     = 1500
+
+  severity_level             = "1"
+  action_group_name          = "${module.alert-action-group.action_group_name}"
+  custom_email_subject       = "Reform Scan delete-rejected-files scheduled job alert"
+  trigger_threshold_operator = "Equal"
+  trigger_threshold          = 0
+  resourcegroup_name         = "${azurerm_resource_group.rg.name}"
+}
