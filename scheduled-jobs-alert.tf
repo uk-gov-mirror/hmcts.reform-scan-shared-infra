@@ -75,8 +75,11 @@ module "reject-duplicates-alert" {
 
   app_insights_query = "traces | where message startswith 'Started reject-duplicates job'"
 
-  frequency_in_minutes       = 120
-  time_window_in_minutes     = 120
+  # running every hour and checking for 25 hours time window ensures early alert
+  frequency_in_minutes       = 60
+  # 60 * 25 hours = 1500 min
+  time_window_in_minutes     = 1500
+
   severity_level             = "1"
   action_group_name          = "${module.alert-action-group.action_group_name}"
   custom_email_subject       = "Reform Scan reject-duplicates scheduled job alert"
