@@ -9,7 +9,7 @@ module "queue-namespace" {
 
 module "notifications-queue" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
-  name                = "notifications-reform"
+  name                = "notifications"
   namespace_name      = "${module.queue-namespace.name}"
   resource_group_name = "${azurerm_resource_group.reform_scan_rg.name}"
   lock_duration       = "PT5M"
