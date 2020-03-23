@@ -7,7 +7,8 @@ provider "azurerm" {
 locals {
   stripped_product  = "${replace(var.product, "-", "")}"
   account_name      = "${local.stripped_product}${var.env}"
-  mgmt_network_name = "${var.subscription == "preview" ? "mgmt-infra-sandbox" : "mgmt-infra-prod"}"
+  mgmt_network_name = "core-cftptl-intsvc-vnet"
+  mgmt_network_rg_name = "aks-infra-cftptl-intsvc-rg"
   prod_hostname     = "${local.stripped_product}.${var.external_hostname}"
   nonprod_hostname  = "${local.stripped_product}.${var.env}.${var.external_hostname}"
   external_hostname = "${ var.env == "prod" ? local.prod_hostname : local.nonprod_hostname}"
@@ -25,9 +26,9 @@ data "azurerm_subnet" "trusted_subnet" {
 
 data "azurerm_subnet" "jenkins_subnet" {
   provider             = "azurerm.mgmt"
-  name                 = "jenkins-subnet"
+  name                 = "iaas"
   virtual_network_name = "${local.mgmt_network_name}"
-  resource_group_name  = "${local.mgmt_network_name}"
+  resource_group_name  = "${local.mgmt_network_rg_name}"
 }
 
 resource "azurerm_storage_account" "storage_account" {
