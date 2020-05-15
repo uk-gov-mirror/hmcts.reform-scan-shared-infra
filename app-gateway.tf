@@ -8,11 +8,6 @@ data "azurerm_key_vault_secret" "cert" {
   name         = "${var.external_cert_name}"
 }
 
-data "azurerm_key_vault_secret" "cert_password" {
-  name      = "${var.external_cert_name}-password"
-  key_vault_id = "${data.azurerm_key_vault.infra_vault.id}"
-}
-
 module "appGw" {
   source            = "git@github.com:hmcts/cnp-module-waf?ref=master"
   env               = "${var.env}"
@@ -34,7 +29,7 @@ module "appGw" {
     {
       name     = "${var.external_cert_name}"
       data     = "${data.azurerm_key_vault_secret.cert.value}"
-      password = "${var.env == "prod" ? "" : "${data.azurerm_key_vault_secret.cert_password.value}"}"
+      password = ""
     },
   ]
 
