@@ -4,7 +4,7 @@ locals {
   mgmt_network_name_stg = "core-cftptl-intsvc-vnet"
   mgmt_network_rg_name_stg = "aks-infra-cftptl-intsvc-rg"
   prod_hostname_stg     = "${local.stripped_product_stg}stg.${var.external_hostname}"
-  nonprod_hostname_stg  = "${local.stripped_product_stg}.${var.env}stg.${var.external_hostname}"
+  nonprod_hostname_stg  = "${local.stripped_product_stg}stg.${var.env}.${var.external_hostname}"
   external_hostname_stg = "${ var.env == "prod" ? local.prod_hostname_stg : local.nonprod_hostname_stg}"
 
   // for each client service two containers are created: one named after the service
