@@ -38,3 +38,8 @@ variable "external_hostname" {
   default     = "platform.hmcts.net"
   description = "Ending of hostname. Subdomains will be resolved in declaration of locals"
 }
+
+variable "palo_cluster_size" {
+  type        = "string"
+  default     = "1"
+}

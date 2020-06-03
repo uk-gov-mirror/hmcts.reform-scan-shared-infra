@@ -18,4 +18,5 @@ module "palo_alto" {
   trusted_vnet_resource_group   = "${local.trusted_vnet_resource_group}"
   trusted_vnet_subnet_name      = "${local.trusted_vnet_subnet_name}"
   trusted_destination_host      = "${azurerm_storage_account.storage_account.name}.blob.core.windows.net"
+  cluster_size                  = "${var.palo_cluster_size}"
 }
