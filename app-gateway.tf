@@ -16,6 +16,7 @@ module "appGw" {
   wafName           = "${var.product}"
   resourcegroupname = "${azurerm_resource_group.rg.name}"
   common_tags       = "${var.common_tags}"
+  wafFileUploadLimit = "${var.wafFileUploadLimit}"
 
   # vNet connections
   gatewayIpConfigurations = [
