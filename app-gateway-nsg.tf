@@ -63,7 +63,7 @@ resource "azurerm_network_security_group" "reformscannsg" {
     direction                  = "Inbound"
     access                     = "Allow"
     priority                   = 120
-    source_address_prefix      = "[${data.azurerm_key_vault_secret.aks00_public_ip_prefix.value},${data.azurerm_key_vault_secret.aks01_public_ip_prefix.value}]"
+    source_address_prefixes    = ["${data.azurerm_key_vault_secret.aks00_public_ip_prefix.value}","${data.azurerm_key_vault_secret.aks01_public_ip_prefix.value}"]
     source_port_range          = "*"
     destination_address_prefix = "*"
     destination_port_range     = "443"
