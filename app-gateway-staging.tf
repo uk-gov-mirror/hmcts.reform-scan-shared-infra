@@ -1,6 +1,6 @@
 
 module "appGwStaging" {
-  source            = "git@github.com:hmcts/cnp-module-waf?ref=master"
+  source            = "git@github.com:hmcts/cnp-module-waf?ref=add-exclusion-rule"
   env               = "${var.env}"
   subscription      = "${var.subscription}"
   location          = "${var.location}"
