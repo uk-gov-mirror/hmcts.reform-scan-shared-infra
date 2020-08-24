@@ -1,7 +1,6 @@
 provider "azurerm" {
   alias           = "mgmt"
   subscription_id = "${var.mgmt_subscription_id}"
-  version         = "=1.33.1"
 }
 
 locals {
