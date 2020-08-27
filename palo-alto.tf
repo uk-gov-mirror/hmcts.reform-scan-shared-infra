@@ -5,7 +5,7 @@ locals {
 }
 
 module "palo_alto" {
-  source       = "git@github.com:hmcts/cnp-module-palo-alto?ref=add-pdf-threat-exclusion"
+  source       = "git@github.com:hmcts/cnp-module-palo-alto?ref=test-pip-upgrade"
   subscription = "${var.subscription}"
   env          = "${var.env}"
   product      = "${var.product}"
