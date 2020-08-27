@@ -48,3 +48,5 @@ variable "palo_cluster_size" {
   type        = "string"
   default     = "1"
 }
+
+variable "component" {}
