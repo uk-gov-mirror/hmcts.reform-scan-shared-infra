@@ -5,7 +5,7 @@ locals {
 }
 
 data "azurerm_subnet" "scan_storage_subnet" {
-  name                 = local.scan_storage_vnet_subnet_name}
+  name                 = local.scan_storage_vnet_subnet_name
   virtual_network_name = local.scan_storage_vnet_name
   resource_group_name  = local.scan_storage_vnet_resource_group
 }
