@@ -9,13 +9,14 @@ data "azurerm_key_vault_secret" "cert" {
 }
 
 module "appGw" {
-  source            = "git@github.com:hmcts/cnp-module-waf?ref=master"
+  source            = "git@github.com:hmcts/cnp-module-waf?ref=add-exclusion-rule"
   env               = "${var.env}"
   subscription      = "${var.subscription}"
   location          = "${var.location}"
   wafName           = "${var.product}"
   resourcegroupname = "${azurerm_resource_group.rg.name}"
   common_tags       = "${var.common_tags}"
+  wafFileUploadLimit = "${var.wafFileUploadLimit}"
 
   # vNet connections
   gatewayIpConfigurations = [

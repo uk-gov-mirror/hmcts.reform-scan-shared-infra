@@ -39,6 +39,11 @@ variable "external_hostname" {
   description = "Ending of hostname. Subdomains will be resolved in declaration of locals"
 }
 
+variable "wafFileUploadLimit" {
+  description = "Maximum file upload size in MB for WAF"
+  default = "100"
+}
+
 variable "palo_cluster_size" {
   type        = "string"
   default     = "1"

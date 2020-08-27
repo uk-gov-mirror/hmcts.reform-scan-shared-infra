@@ -154,3 +154,47 @@ module "send-notifications-alert" {
   trigger_threshold          = 0
   resourcegroup_name         = "${azurerm_resource_group.rg.name}"
 }
+
+module "read-notifications-alert" {
+  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  location          = "${azurerm_application_insights.appinsights.location}"
+  app_insights_name = "${azurerm_application_insights.appinsights.name}"
+
+  enabled    = "${var.env == "prod"}"
+  alert_name = "Reform-Scan-Read-Notifications"
+  alert_desc = "Triggers when no logs from consume-notifications job found within timeframe."
+
+  app_insights_query = "traces | where message startswith 'Started consume-notifications task'"
+
+  # for prod delay is 10 minutes. adding 5min buffer for telemetry lag
+  frequency_in_minutes       = 15
+  time_window_in_minutes     = 15
+  severity_level             = "1"
+  action_group_name          = "${module.alert-action-group.action_group_name}"
+  custom_email_subject       = "Reform Scan consume-notifications scheduled job alert"
+  trigger_threshold_operator = "Equal"
+  trigger_threshold          = 0
+  resourcegroup_name         = "${azurerm_resource_group.rg.name}"
+}
+
+module "send-notifications-to-scan-provider-alert" {
+  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  location          = "${azurerm_application_insights.appinsights.location}"
+  app_insights_name = "${azurerm_application_insights.appinsights.name}"
+
+  enabled    = "${var.env == "prod"}"
+  alert_name = "Reform-Scan-Pending-Notifications"
+  alert_desc = "Triggers when no logs from pending-notifications job found within timeframe."
+
+  app_insights_query = "traces | where message startswith 'Started pending-notifications task'"
+
+  # task delay is 30min for prod. adding extra 5 min for telemetry lag
+  frequency_in_minutes       = 30
+  time_window_in_minutes     = 35
+  severity_level             = "1"
+  action_group_name          = "${module.alert-action-group.action_group_name}"
+  custom_email_subject       = "Reform Scan pending-notifications scheduled job alert"
+  trigger_threshold_operator = "Equal"
+  trigger_threshold          = 0
+  resourcegroup_name         = "${azurerm_resource_group.rg.name}"
+}
