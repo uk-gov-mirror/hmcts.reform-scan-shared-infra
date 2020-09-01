@@ -23,3 +23,22 @@ resource "azurerm_private_endpoint" "private_endpoint" {
     subresource_names              = ["blob"]
   }
 }
+
+
+resource "azurerm_template_deployment" "private_endpoint" {
+  name                = "${local.account_name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  template_body = file("private_endpoint_template.json")
+
+  parameters = {
+    endpoint_name       = "${local.account_name}"
+    endpoint_location   = "uksouth"
+    vnet_id             = "/subscriptions/7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c/resourceGroups/core-infra-perftest/providers/Microsoft.Network/virtualNetworks/core-infra-vnet-perftest"
+    subnet_name         = "scan-storage"
+    storageaccount_id   = "/subscriptions/7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c/resourceGroups/bulk-scan-perftest/providers/Microsoft.Storage/storageAccounts/bulkscanperftest"
+    storageaccount_fqdn = "bulkscanperftest.blob.core.windows.net"
+  }
+
+  deployment_mode = "Incremental"
+}
