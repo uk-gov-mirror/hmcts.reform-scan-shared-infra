@@ -69,6 +69,18 @@ resource "azurerm_network_security_group" "reformscannsg" {
     destination_port_range     = "443"
     protocol                   = "TCP"
   }
+  
+  security_rule {
+    name                       = "AllowAzureStorageInBound"
+    direction                  = "Inbound"
+    access                     = "Allow"
+    priority                   = 130
+    source_address_prefix      = "Storage"
+    source_port_range          = "*"
+    destination_address_prefix = "*"
+    destination_port_range     = "443"
+    protocol                   = "*"
+  }
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg_association" {
