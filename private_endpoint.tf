@@ -35,7 +35,7 @@ resource "azurerm_template_deployment" "private_endpoint" {
   parameters = {
     endpoint_name       = "${local.account_name}"
     endpoint_location   = "${azurerm_resource_group.rg.location}"
-    subnet_id           = "${data.scan_storage_subnet.id}"
+    subnet_id           = "${data.azurerm_subnet.scan_storage_subnet.id}"
     storageaccount_id   = "${azurerm_storage_account.storage_account.id}" 
     storageaccount_fqdn = "${azurerm_storage_account.storage_account.primary_blob_endpoint }"
   }
