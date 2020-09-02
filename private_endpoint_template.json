@@ -14,10 +14,7 @@
         "storageaccount_fqdn": {
             "type": "String"
         },
-        "vnet_id": {
-            "type": "String"
-        },
-        "subnet_name": {
+        "subnet_id": {
             "type": "String"
         }
     },
@@ -47,7 +44,7 @@
                 ],
                 "manualPrivateLinkServiceConnections": [],
                 "subnet": {
-                    "id": "[concat(parameters('vnet_id'), '/subnets/', parameters('subnet_name'))]"
+                    "id": "[parameters('subnet_id')]"
                 },
                 "customDnsConfigs": [
                     {

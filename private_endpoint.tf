@@ -10,6 +10,7 @@ data "azurerm_subnet" "scan_storage_subnet" {
   resource_group_name  = "${local.scan_storage_vnet_resource_group}"
 }
 
+
 # resource "azurerm_private_endpoint" "private_endpoint" {
 #   name                = "${local.account_name}"
 #   resource_group_name = "${azurerm_resource_group.rg.name}"
@@ -33,11 +34,10 @@ resource "azurerm_template_deployment" "private_endpoint" {
 
   parameters = {
     endpoint_name       = "${local.account_name}"
-    endpoint_location   = "uksouth"
-    vnet_id             = "/subscriptions/7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c/resourceGroups/core-infra-perftest/providers/Microsoft.Network/virtualNetworks/core-infra-vnet-perftest"
-    subnet_name         = "scan-storage"
-    storageaccount_id   = "/subscriptions/7a4e3bd5-ae3a-4d0c-b441-2188fee3ff1c/resourceGroups/bulk-scan-perftest/providers/Microsoft.Storage/storageAccounts/bulkscanperftest"
-    storageaccount_fqdn = "bulkscanperftest.blob.core.windows.net"
+    endpoint_location   = "${azurerm_resource_group.rg.location}"
+    subnet_id           = "${data.scan_storage_subnet.id}"
+    storageaccount_id   = "${azurerm_storage_account.storage_account.id}" 
+    storageaccount_fqdn = "${azurerm_storage_account.storage_account.primary_blob_endpoint }"
   }
 
   deployment_mode = "Incremental"
