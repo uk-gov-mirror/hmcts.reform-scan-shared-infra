@@ -10,7 +10,7 @@ module "vault" {
   common_tags             = "${local.tags}"
   location                = "${var.location}"
 
-  managed_identity_object_id = "${var.managed_identity_object_id}"
+  managed_identity_object_ids = ["${var.managed_identity_object_id}","${var.managed_identity_api_mgmt}"]
 }
 
 data "azurerm_key_vault" "key_vault" {
