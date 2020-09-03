@@ -31,6 +31,10 @@ variable "managed_identity_object_id" {
   default = ""
 }
 
+variable "managed_identity_api_mgmt" {
+  default = ""
+}
+
 variable "external_cert_name" {}
 
 variable "external_hostname" {
