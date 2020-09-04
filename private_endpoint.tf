@@ -10,24 +10,9 @@ data "azurerm_subnet" "scan_storage_subnet" {
   resource_group_name  = "${local.scan_storage_vnet_resource_group}"
 }
 
-
-# resource "azurerm_private_endpoint" "private_endpoint" {
-#   name                = "${local.account_name}"
-#   resource_group_name = "${azurerm_resource_group.rg.name}"
-#   location            = "${azurerm_resource_group.rg.location}"
-#   subnet_id           = "$azurerm_subnet.scan_storage_subnet.id}"
-
-#   private_service_connection {
-#     name                           = "${local.account_name}-private-connection"
-#     private_connection_resource_id = azurerm_storage_account.storage_account.id
-#     is_manual_connection           = false
-#     subresource_names              = ["blob"]
-#   }
-# }
-
-
 resource "azurerm_template_deployment" "private_endpoint" {
-  name                = "${local.account_name}"
+  # name                = "${local.account_name}"
+  name                = "jjendpoint"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   template_body = file("private_endpoint_template.json")
