@@ -11,8 +11,7 @@ data "azurerm_subnet" "scan_storage_subnet" {
 }
 
 resource "azurerm_template_deployment" "private_endpoint" {
-  # name                = "${local.account_name}"
-  name                = "jjendpoint"
+  name                = "${local.account_name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   template_body = file("private_endpoint_template.json")
