@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "endpoint_name": {
+            "type": "String"
+        },
+        "endpoint_location": {
+            "type": "String"
+        },
+        "storageaccount_id": {
+            "type": "String"
+        },
+        "storageaccount_fqdn": {
+            "type": "String"
+        },
+        "subnet_id": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/privateEndpoints",
+            "apiVersion": "2020-05-01",
+            "name": "[parameters('endpoint_name')]",
+            "location": "[parameters('endpoint_location')]",
+            "properties": {
+                "privateLinkServiceConnections": [
+                    {
+                        "name": "[parameters('endpoint_name')]",
+                        "properties": {
+                            "privateLinkServiceId": "[parameters('storageaccount_id')]",
+                            "groupIds": [
+                                "blob"
+                            ],
+                            "privateLinkServiceConnectionState": {
+                                "status": "Approved",
+                                "description": "Auto-Approved",
+                                "actionsRequired": "None"
+                            }
+                        }
+                    }
+                ],
+                "manualPrivateLinkServiceConnections": [],
+                "subnet": {
+                    "id": "[parameters('subnet_id')]"
+                },
+                "customDnsConfigs": [
+                    {
+                        "fqdn": "[parameters('storageaccount_fqdn')]",
+                        "ipAddresses": [
+                            "10.112.154.4"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
