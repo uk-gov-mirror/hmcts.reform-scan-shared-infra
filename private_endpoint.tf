@@ -11,13 +11,13 @@ data "azurerm_subnet" "scan_storage_subnet" {
 }
 
 resource "azurerm_template_deployment" "private_endpoint" {
-  name                = "${local.account_name}"
+  name                = "${local.account_name}-endpoint"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   template_body = file("private_endpoint_template.json")
 
   parameters = {
-    endpoint_name       = "reformscan${var.env}"
+    endpoint_name       = "${local.account_name}-endpoint"
     endpoint_location   = "${azurerm_resource_group.rg.location}"
     subnet_id           = "${data.azurerm_subnet.scan_storage_subnet.id}"
     storageaccount_id   = "${azurerm_storage_account.storage_account.id}" 
