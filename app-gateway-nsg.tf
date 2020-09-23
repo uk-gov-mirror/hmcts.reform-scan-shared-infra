@@ -39,7 +39,7 @@ resource "azurerm_network_security_group" "reformscannsg" {
     direction                  = "Inbound"
     access                     = "Allow"
     priority                   = 100
-    source_address_prefixes    = ["${split(",", data.azurerm_key_vault_secret.allowed_external_ips.value)}"]
+    source_address_prefixes    = ["${data.azurerm_key_vault_secret.allowed_external_ips.value}"]
     source_port_range          = "*"
     destination_address_prefix = "*"
     destination_port_range     = "443"
@@ -51,7 +51,7 @@ resource "azurerm_network_security_group" "reformscannsg" {
     direction                  = "Inbound"
     access                     = "Allow"
     priority                   = 110
-    source_address_prefixes    = ["${split(",", data.azurerm_public_ip.proxy_out_public_ip.ip_address)}"]
+    source_address_prefixes    = ["${data.azurerm_public_ip.proxy_out_public_ip.ip_address}"]
     source_port_range          = "*"
     destination_address_prefix = "*"
     destination_port_range     = "443"
