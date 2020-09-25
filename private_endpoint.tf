@@ -1,5 +1,5 @@
 locals {
-  scan_storage_vnet_name           = "core-infra-vnet-${var.env}"
+  scan_storage_vnet_name           = "${var.env == "aat" ? "scan-storage-vnet-aat" : "core-infra-vnet-${var.env}"}"
   scan_storage_vnet_resource_group = "core-infra-${var.env}"
   scan_storage_vnet_subnet_name    = "scan-storage"
 }
@@ -21,7 +21,7 @@ resource "azurerm_template_deployment" "private_endpoint" {
     endpoint_location   = "${azurerm_resource_group.rg.location}"
     subnet_id           = "${data.azurerm_subnet.scan_storage_subnet.id}"
     storageaccount_id   = "${azurerm_storage_account.storage_account.id}" 
-    storageaccount_fqdn = "${azurerm_storage_account.storage_account.primary_blob_endpoint }"
+    storageaccount_fqdn = "${azurerm_storage_account.storage_account.primary_blob_endpoint}"
   }
 
   deployment_mode = "Incremental"
