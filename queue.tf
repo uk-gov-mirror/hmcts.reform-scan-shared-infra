@@ -2,7 +2,7 @@ module "queue-namespace" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=master"
   name                = "${local.product}-servicebus-${var.env}"
   location            = "${var.location}"
-  resource_group_name = "${azurerm_resource_group.reform_scan_rg.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   env                 = "${var.env}"
   common_tags         = "${local.tags}"
 }
@@ -11,7 +11,7 @@ module "notifications-queue" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
   name                = "notifications"
   namespace_name      = "${module.queue-namespace.name}"
-  resource_group_name = "${azurerm_resource_group.reform_scan_rg.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   lock_duration       = "PT5M"
 
   duplicate_detection_history_time_window = "PT15M"
@@ -45,7 +45,7 @@ module "notifications-staging-queue" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
   name                = "notifications-staging"
   namespace_name      = "${module.queue-namespace.name}"
-  resource_group_name = "${azurerm_resource_group.reform_scan_rg.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   lock_duration       = "PT5M"
 
   duplicate_detection_history_time_window = "PT15M"
