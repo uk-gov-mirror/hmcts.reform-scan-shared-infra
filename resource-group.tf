@@ -14,10 +14,3 @@ resource "azurerm_resource_group" "rg" {
 
   tags = "${local.tags}"
 }
-
-resource "azurerm_resource_group" "reform_scan_rg" {
-  name     = "${local.product}-${var.env}"
-  location = "${var.location}"
-
-  tags = "${local.tags}"
-}
