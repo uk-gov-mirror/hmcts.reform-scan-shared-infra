@@ -2,7 +2,7 @@
 
 @Library("Infrastructure")
 
-def product = 'reform-scan'
+def product = 'reform-scan-v2'
 
 withInfraPipeline(product) {
 

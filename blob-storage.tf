@@ -1,7 +1,7 @@
 provider "azurerm" {
   alias           = "mgmt"
   subscription_id = "${var.mgmt_subscription_id}"
-  version         = "=1.33.1"
+  features {}
 }
 
 locals {
@@ -16,12 +16,6 @@ locals {
   // for each client service two containers are created: one named after the service
   // and another one, named {service_name}-rejected, for storing envelopes rejected by process
   client_containers = ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "finrem", "pcq", "probate", "sscs", "publiclaw"]
-}
-
-data "azurerm_subnet" "trusted_subnet" {
-  name                 = "${local.trusted_vnet_subnet_name}"
-  virtual_network_name = "${local.trusted_vnet_name}"
-  resource_group_name  = "${local.trusted_vnet_resource_group}"
 }
 
 data "azurerm_subnet" "jenkins_subnet" {
@@ -60,7 +54,7 @@ resource "azurerm_storage_account" "storage_account" {
   }
 
   network_rules {
-    virtual_network_subnet_ids = ["${data.azurerm_subnet.trusted_subnet.id}", "${data.azurerm_subnet.jenkins_subnet.id}", "${data.azurerm_subnet.aks_00_subnet.id}", "${data.azurerm_subnet.aks_01_subnet.id}"]
+    virtual_network_subnet_ids = ["${data.azurerm_subnet.scan_storage_subnet.id}", "${data.azurerm_subnet.jenkins_subnet.id}", "${data.azurerm_subnet.aks_00_subnet.id}", "${data.azurerm_subnet.aks_01_subnet.id}"]
     bypass                     = ["Logging", "Metrics", "AzureServices"]
     default_action             = "Deny"
   }
@@ -82,19 +76,19 @@ resource "azurerm_storage_container" "client_rejected_containers" {
 
 # store blob storage secrets in key vault
 resource "azurerm_key_vault_secret" "storage_account_name" {
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id = "${module.vault.key_vault_id}"
   name         = "storage-account-name"
   value        = "${azurerm_storage_account.storage_account.name}"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_primary_key" {
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id = "${module.vault.key_vault_id}"
   name         = "storage-account-primary-key"
   value        = "${azurerm_storage_account.storage_account.primary_access_key}"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_secondary_key" {
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id = "${module.vault.key_vault_id}"
   name         = "storage-account-secondary-key"
   value        = "${azurerm_storage_account.storage_account.secondary_access_key}"
 }

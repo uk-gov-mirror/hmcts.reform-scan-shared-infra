@@ -1,3 +1,9 @@
+resource "azurerm_key_vault_secret" "AZURE_APPINSIGHTS_KEY" {
+  name         = "app-insights-instrumentation-key"
+  value        = "${azurerm_application_insights.appinsights.instrumentation_key}"
+  key_vault_id = "${module.vault.key_vault_id}"
+}
+
 resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-${var.env}"
   location            = "${var.location}"
@@ -11,12 +17,9 @@ resource "azurerm_application_insights" "appinsights" {
       # destroys and re-creates this appinsights instance
       application_type,
     ]
-  }  
+  }
 }
 
-# store app insights key in key vault
-resource "azurerm_key_vault_secret" "appinsights_secret" {
-  name         = "app-insights-instrumentation-key"
-  value        = "${azurerm_application_insights.appinsights.instrumentation_key}"
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
+output "appInsightsInstrumentationKey" {
+  value = "${azurerm_application_insights.appinsights.instrumentation_key}"
 }

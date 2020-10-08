@@ -12,12 +12,6 @@ locals {
   client_containers_stg = ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "finrem", "pcq", "probate", "sscs", "publiclaw"]
 }
 
-data "azurerm_subnet" "trusted_subnet_stg" {
-  name                 = "${local.trusted_vnet_subnet_name_stg}"
-  virtual_network_name = "${local.trusted_vnet_name_stg}"
-  resource_group_name  = "${local.trusted_vnet_resource_group_stg}"
-}
-
 data "azurerm_subnet" "jenkins_subnet_stg" {
   provider             = "azurerm.mgmt"
   name                 = "iaas"
@@ -54,7 +48,7 @@ resource "azurerm_storage_account" "storage_account_staging" {
   }
 
   network_rules {
-    virtual_network_subnet_ids = ["${data.azurerm_subnet.trusted_subnet_stg.id}", "${data.azurerm_subnet.jenkins_subnet_stg.id}", "${data.azurerm_subnet.aks_00_subnet_stg.id}", "${data.azurerm_subnet.aks_01_subnet_stg.id}"]
+    virtual_network_subnet_ids = ["${data.azurerm_subnet.scan_storage_subnet.id}", "${data.azurerm_subnet.jenkins_subnet_stg.id}", "${data.azurerm_subnet.aks_00_subnet_stg.id}", "${data.azurerm_subnet.aks_01_subnet_stg.id}"]
     bypass                     = ["Logging", "Metrics", "AzureServices"]
     default_action             = "Deny"
   }
@@ -76,19 +70,19 @@ resource "azurerm_storage_container" "client_rejected_containers_stg" {
 
 # store blob storage secrets in key vault
 resource "azurerm_key_vault_secret" "storage_account_staging_name" {
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id = "${module.vault.key_vault_id}"
   name         = "storage-account-staging-name"
   value        = "${azurerm_storage_account.storage_account_staging.name}"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_staging_primary_key" {
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id = "${module.vault.key_vault_id}"
   name         = "storage-account-staging-primary-key"
   value        = "${azurerm_storage_account.storage_account_staging.primary_access_key}"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_staging_secondary_key" {
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id = "${module.vault.key_vault_id}"
   name         = "storage-account-staging-secondary-key"
   value        = "${azurerm_storage_account.storage_account_staging.secondary_access_key}"
 }

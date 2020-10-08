@@ -1,19 +1,22 @@
 module "vault" {
-  source                  = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
-  name                    = "${var.product}-${var.env}"
+  source                  = "git@github.com:hmcts/cnp-module-key-vault?ref=azurermv2"
+  name                    = substr("${var.product}-${var.env}-kv", 0, 23)
+  #name                   = "${var.product}-${var.env}-kv"
   product                 = "${var.product}"
   env                     = "${var.env}"
   tenant_id               = "${var.tenant_id}"
   object_id               = "${var.jenkins_AAD_objectId}"
   resource_group_name     = "${azurerm_resource_group.rg.name}"
   product_group_object_id = "70de400b-4f47-4f25-a4f0-45e1ee4e4ae3"
-  common_tags             = "${local.tags}"
-  location                = "${var.location}"
-
+  common_tags             = "${var.common_tags}"
   managed_identity_object_id = "${var.managed_identity_object_id}"
 }
 
-data "azurerm_key_vault" "key_vault" {
-  name                = "${module.vault.key_vault_name}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+# data "azurerm_key_vault" "key_vault" {
+#   name                = "${module.vault.key_vault_name}"
+#   resource_group_name = "${azurerm_resource_group.rg.name}"
+# }
+
+output "vaultName" {
+  value = "${module.vault.key_vault_name}"
 }
