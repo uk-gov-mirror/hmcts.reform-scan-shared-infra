@@ -1,6 +1,6 @@
 data "azurerm_key_vault_secret" "source_reform_scan_email_secret" {
   name      = "reform-scan-alert-email"
-  key_vault_id = "${module.vault.key_vault_id}"
+  vault_uri = "${module.vault.key_vault_uri}"
 }
 
 module "alert-action-group" {
@@ -18,7 +18,7 @@ module "alert-action-group" {
 resource "azurerm_key_vault_secret" "alert_action_group_name" {
   name = "alert-action-group-name"
   value = "${module.alert-action-group.action_group_name}"
-  key_vault_id = "${module.vault.key_vault_id}"
+  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
 }
 
 output "action_group_name" {

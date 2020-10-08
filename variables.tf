@@ -6,7 +6,7 @@ variable "location" {
 
 variable "application_type" {
   type        = "string"
-  default     = "web"
+  default     = "Web"
   description = "Type of Application Insights (Web/Other)"
 }
 
