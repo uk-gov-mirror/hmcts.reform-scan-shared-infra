@@ -26,7 +26,7 @@ resource "azurerm_frontdoor" "frontdoor" {
   backend_pool {
     name = "storageBackend"
     backend {
-      host_header = "${var.external_hostname}"
+      host_header = "${var.frontdoor_hostname}"
       address     = "${var.frontdoor_backend}"
       http_port   = 80
       https_port  = 443
@@ -38,7 +38,7 @@ resource "azurerm_frontdoor" "frontdoor" {
 
   frontend_endpoint {
     name                              = "storageFrontendEndpoint"
-    host_name                         = "${var.external_hostname}"
+    host_name                         = "${var.frontdoor_hostname}"
     custom_https_provisioning_enabled = true
     custom_https_configuration {
       certificate_source                         = "AzureKeyVault"
