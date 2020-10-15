@@ -7,5 +7,7 @@ wafFileUploadLimit = "500"
 palo_cluster_size = "2"
 
 frontdoor_backend = "firewall-prod-int-palo-reformscanprod.uksouth.cloudapp.azure.com"
-
 frontdoor_hostname = "reformscan.platform.hmcts.net"
+
+stg_frontdoor_backend = "firewall-prod-int-palo-reformscanprodstg.uksouth.cloudapp.azure.com"
+stg_frontdoor_hostname = "reformscanstg.platform.hmcts.net"
