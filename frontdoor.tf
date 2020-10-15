@@ -38,7 +38,7 @@ resource "azurerm_frontdoor" "frontdoor" {
 
   frontend_endpoint {
     name                              = "storageFrontendEndpoint"
-    host_name                         = "${var.frontdoor_hostname}"
+    host_name                         = "${var.frontdoor_hostname}-v2"
     custom_https_provisioning_enabled = true
     custom_https_configuration {
       certificate_source                         = "AzureKeyVault"
