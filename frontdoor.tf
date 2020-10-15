@@ -14,6 +14,17 @@ resource "azurerm_frontdoor" "frontdoor" {
       backend_pool_name   = "storageBackend"
     }
   }
+  
+  routing_rule {
+    name               = "stgStorageRoutingRule"
+    accepted_protocols = ["Https"]
+    patterns_to_match  = ["/*"]
+    frontend_endpoints = ["stgStorageFrontendEndpoint"]
+    forwarding_configuration {
+      forwarding_protocol = "MatchRequest"
+      backend_pool_name   = "stgStorageBackend"
+    }
+  }  
 
   backend_pool_load_balancing {
     name = "storageLoadBalancingSettings"
@@ -35,6 +46,19 @@ resource "azurerm_frontdoor" "frontdoor" {
     load_balancing_name = "storageLoadBalancingSettings"
     health_probe_name   = "storageHealthProbeSetting"
   }
+  
+  backend_pool {
+    name = "stgStorageBackend"
+    backend {
+      host_header = "${var.stg_frontdoor_hostname}"
+      address     = "${var.stg_frontdoor_backend}"
+      http_port   = 80
+      https_port  = 443
+    }
+
+    load_balancing_name = "storageLoadBalancingSettings"
+    health_probe_name   = "storageHealthProbeSetting"
+  }
 
   frontend_endpoint {
     name                              = "storageFrontendEndpoint"
@@ -47,6 +71,18 @@ resource "azurerm_frontdoor" "frontdoor" {
       azure_key_vault_certificate_secret_version = data.azurerm_key_vault_secret.cert.version  
     }
   }
+
+  frontend_endpoint {
+    name                              = "stgStorageFrontendEndpoint"
+    host_name                         = "v2-stg${var.frontdoor_hostname}"
+    custom_https_provisioning_enabled = true
+    custom_https_configuration {
+      certificate_source                         = "AzureKeyVault"
+      azure_key_vault_certificate_vault_id       = data.azurerm_key_vault.infra_vault.id
+      azure_key_vault_certificate_secret_name    = var.external_cert_name
+      azure_key_vault_certificate_secret_version = data.azurerm_key_vault_secret.cert.version  
+    }
+  }  
  
   frontend_endpoint {
     name                              = "defaultFrontendEndpoint"
