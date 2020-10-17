@@ -32,6 +32,7 @@ resource "azurerm_frontdoor" "frontdoor" {
 
   backend_pool_health_probe {
     name = "storageHealthProbeSetting"
+    protocol = "Https"
   }
 
   backend_pool {
