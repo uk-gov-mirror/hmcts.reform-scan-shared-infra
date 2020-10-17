@@ -42,10 +42,10 @@ resource "azurerm_storage_account" "storage_account_staging" {
   account_replication_type = "LRS"
   account_kind             = "BlobStorage"
 
-  custom_domain {
-    name          = "${local.external_hostname_stg}"
-    use_subdomain = "false"
-  }
+#   custom_domain {
+#     name          = "${local.external_hostname_stg}"
+#     use_subdomain = "false"
+#   }
 
   network_rules {
     virtual_network_subnet_ids = ["${data.azurerm_subnet.scan_storage_subnet.id}", "${data.azurerm_subnet.jenkins_subnet_stg.id}", "${data.azurerm_subnet.aks_00_subnet_stg.id}", "${data.azurerm_subnet.aks_01_subnet_stg.id}"]
