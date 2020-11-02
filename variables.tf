@@ -43,26 +43,3 @@ variable "wafFileUploadLimit" {
   description = "Maximum file upload size in MB for WAF"
   default = "100"
 }
-
-variable "palo_cluster_size" {
-  type        = "string"
-  default     = "1"
-}
-
-variable "frontdoor_backend" {
-  type        = "string"
-}
-
-variable "frontdoor_hostname" {
-   type        = "string"
-}
-
-variable "stg_frontdoor_backend" {
-  type        = "string"
-  default     = ""
-}  
-
-variable "stg_frontdoor_hostname" {
-  type        = "string"
-  default     = ""
-}  
