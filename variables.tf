@@ -31,14 +31,6 @@ variable "managed_identity_object_id" {
   default = ""
 }
 
-variable "external_cert_name" {}
-
-variable "external_hostname" {
-  type        = "string"
-  default     = "platform.hmcts.net"
-  description = "Ending of hostname. Subdomains will be resolved in declaration of locals"
-}
-
 variable "wafFileUploadLimit" {
   description = "Maximum file upload size in MB for WAF"
   default = "100"
