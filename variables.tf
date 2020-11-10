@@ -36,3 +36,7 @@ variable "external_hostname" {
   default     = "platform.hmcts.net"
   description = "Ending of hostname. Subdomains will be resolved in declaration of locals"
 }
+
+variable "enable_staging_account" {
+  default = false
+}
