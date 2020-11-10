@@ -38,5 +38,5 @@ variable "external_hostname" {
 }
 
 variable "enable_staging_account" {
-  default = false
+  default = 0
 }
