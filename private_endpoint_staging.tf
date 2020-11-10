@@ -6,7 +6,7 @@ resource "azurerm_private_endpoint" "private_endpoint_stg" {
 
   private_service_connection {
     name                           = "${local.account_name}stg-endpoint"
-    private_connection_resource_id = azurerm_storage_account.storage_account_staging.id
+    private_connection_resource_id = azurerm_storage_account.storage_account_staging.*.id
     is_manual_connection           = false
     subresource_names              = ["blob"]
   }
