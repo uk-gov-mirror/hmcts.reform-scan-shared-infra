@@ -31,7 +31,8 @@ variable "managed_identity_object_id" {
   default = ""
 }
 
-variable "wafFileUploadLimit" {
-  description = "Maximum file upload size in MB for WAF"
-  default = "100"
+variable "external_hostname" {
+  type        = "string"
+  default     = "platform.hmcts.net"
+  description = "Ending of hostname. Subdomains will be resolved in declaration of locals"
 }
