@@ -40,3 +40,7 @@ variable "external_hostname" {
 variable "enable_staging_account" {
   default = 0
 }
+
+variable "enable_private_endpoint" {
+  default = 0
+}
