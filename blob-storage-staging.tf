@@ -9,7 +9,7 @@ locals {
 
   // for each client service two containers are created: one named after the service
   // and another one, named {service_name}-rejected, for storing envelopes rejected by process
-  client_containers_stg = var.enable_staging_account == true ? ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "finrem", "pcq", "probate", "sscs", "publiclaw"] : []
+  client_containers_stg = var.enable_staging_account == 1 ? ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "finrem", "pcq", "probate", "sscs", "publiclaw"] : []
 }
 
 resource "azurerm_storage_account" "storage_account_staging" {
@@ -35,13 +35,13 @@ resource "azurerm_storage_account" "storage_account_staging" {
 
 resource "azurerm_storage_container" "client_containers_stg" {
   name                 = "${local.client_containers_stg[count.index]}"
-  storage_account_name = "${azurerm_storage_account.storage_account_staging.*.name}"
+  storage_account_name = "${azurerm_storage_account.storage_account_staging[0].name}"
   count                = "${length(local.client_containers_stg)}"
 }
 
 resource "azurerm_storage_container" "client_rejected_containers_stg" {
   name                 = "${local.client_containers_stg[count.index]}-rejected"
-  storage_account_name = "${azurerm_storage_account.storage_account_staging.*.name}"
+  storage_account_name = "${azurerm_storage_account.storage_account_staging[0].name}"
   count                = "${length(local.client_containers_stg)}"
 }
 
