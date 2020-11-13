@@ -31,6 +31,10 @@ variable "managed_identity_object_id" {
   default = ""
 }
 
+variable "managed_identity_api_mgmt" {
+  default = ""
+}
+
 variable "external_hostname" {
   type        = "string"
   default     = "platform.hmcts.net"
