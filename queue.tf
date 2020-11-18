@@ -1,6 +1,6 @@
 module "queue-namespace" {
   source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=master"
-  name                = "${local.product}-servicebus-v2-${var.env}"
+  name                = "${local.product}-servicebus-${var.env}"
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   env                 = "${var.env}"
