@@ -23,7 +23,7 @@ resource "azurerm_storage_account" "storage_account_staging" {
 
   network_rules {
     virtual_network_subnet_ids = [
-      data.azurerm_subnet.jenkins_subnet.id, data.azurerm_subnet.aks_00_subnet.id, data.azurerm_subnet.aks_01_subnet.id]
+      data.azurerm_subnet.scan_storage_subnet.id, data.azurerm_subnet.jenkins_subnet.id, data.azurerm_subnet.aks_00_subnet.id, data.azurerm_subnet.aks_01_subnet.id]
     bypass                     = ["Logging", "Metrics", "AzureServices"]
     default_action             = "Deny"
   }
