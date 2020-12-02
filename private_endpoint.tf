@@ -23,5 +23,4 @@ resource "azurerm_private_endpoint" "private_endpoint" {
     subresource_names              = ["blob"]
   }
 
-  count = var.enable_private_endpoint
 }
