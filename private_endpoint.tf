@@ -22,5 +22,4 @@ resource "azurerm_private_endpoint" "private_endpoint" {
     is_manual_connection           = false
     subresource_names              = ["blob"]
   }
-
 }
