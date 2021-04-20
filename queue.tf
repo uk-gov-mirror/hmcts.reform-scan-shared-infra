@@ -13,8 +13,8 @@ module "notifications-queue" {
   namespace_name      = "${module.queue-namespace.name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   lock_duration       = "PT5M"
-
-  duplicate_detection_history_time_window = "PT15M"
+  requires_duplicate_detection            =  true
+  duplicate_detection_history_time_window = "PT59M"
 }
 
 resource "azurerm_key_vault_secret" "notifications_queue_send_conn_str" {
@@ -47,8 +47,8 @@ module "notifications-staging-queue" {
   namespace_name      = "${module.queue-namespace.name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   lock_duration       = "PT5M"
-
-  duplicate_detection_history_time_window = "PT15M"
+  requires_duplicate_detection            =  true
+  duplicate_detection_history_time_window = "PT59M"
 }
 
 resource "azurerm_key_vault_secret" "notifications_staging_queue_send_conn_str" {
