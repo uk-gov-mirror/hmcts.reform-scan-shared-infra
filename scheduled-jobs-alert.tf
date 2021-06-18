@@ -173,7 +173,7 @@ module "read-notifications-alert" {
   action_group_name          = "${module.alert-action-group.action_group_name}"
   custom_email_subject       = "Reform Scan consume-notifications scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = 1
   resourcegroup_name         = "${azurerm_resource_group.rg.name}"
 }
 
