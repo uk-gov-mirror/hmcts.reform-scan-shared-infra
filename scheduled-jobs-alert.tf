@@ -160,7 +160,7 @@ module "read-notifications-alert" {
   location          = "${azurerm_application_insights.appinsights.location}"
   app_insights_name = "${azurerm_application_insights.appinsights.name}"
 
-  enabled    = "${var.env == "prod"}"
+  enabled    = false
   alert_name = "Reform-Scan-Read-Notifications"
   alert_desc = "Triggers when no logs from consume-notifications job found within timeframe."
 
