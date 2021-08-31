@@ -1,6 +1,3 @@
-terraform {
-  backend "azurerm" {}
-}
 
 provider "azurerm" {
   alias           = "cft-mgmt"
