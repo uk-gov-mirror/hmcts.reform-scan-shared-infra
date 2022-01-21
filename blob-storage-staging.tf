@@ -9,7 +9,7 @@ locals {
 
   // for each client service two containers are created: one named after the service
   // and another one, named {service_name}-rejected, for storing envelopes rejected by process
-  client_containers_stg = var.enable_staging_account == 1 ? ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "nfd", "finrem", "pcq", "probate", "sscs", "publiclaw", "privatelaw"] : []
+  client_containers_stg = var.enable_staging_account == 1 ? ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "nofaultdivorce", "finrem", "pcq", "probate", "sscs", "publiclaw", "privatelaw"] : []
 }
 
 resource "azurerm_storage_account" "storage_account_staging" {

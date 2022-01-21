@@ -15,7 +15,7 @@ locals {
 
   // for each client service two containers are created: one named after the service
   // and another one, named {service_name}-rejected, for storing envelopes rejected by process
-  client_containers = ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "nfd", "finrem", "pcq", "probate", "sscs", "publiclaw", "privatelaw"]
+  client_containers = ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "nofaultdivorce", "finrem", "pcq", "probate", "sscs", "publiclaw", "privatelaw"]
 }
 
 data "azurerm_subnet" "jenkins_subnet" {
