@@ -6,9 +6,9 @@ provider "azurerm" {
 
 locals {
   stripped_product  = "${replace(var.product, "-", "")}"
-  account_name      = "${local.stripped_product}${var.env}"
-  mgmt_network_name = "core-cftptl-intsvc-vnet"
-  mgmt_network_rg_name = "aks-infra-cftptl-intsvc-rg"
+   account_name      = "${local.stripped_product}${var.env}"
+  mgmt_network_name = "cft-ptl-vnet"
+  mgmt_network_rg_name = "cft-ptl-network-rg"
   prod_hostname     = "${local.stripped_product}.${var.external_hostname}"
   nonprod_hostname  = "${local.stripped_product}.${var.env}.${var.external_hostname}"
   external_hostname = "${ var.env == "prod" ? local.prod_hostname : local.nonprod_hostname}"
