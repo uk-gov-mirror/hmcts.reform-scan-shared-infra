@@ -6,11 +6,6 @@ def product = 'reform-scan'
 
 withInfraPipeline(product) {
 
-  after('buildinfra:aat') {
-    echo 'Intentionally failing build here'
-    error()
-  }
-
   enableSlackNotifications('#bsp-build-notices')
 
 }
