@@ -10,6 +10,6 @@ resource "azurerm_private_endpoint" "private_endpoint_stg" {
     is_manual_connection           = false
     subresource_names              = ["blob"]
   }
-  
+
   count = var.enable_staging_account
 }
