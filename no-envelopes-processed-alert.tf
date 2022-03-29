@@ -3,9 +3,10 @@ module "no-cft-envelopes-processed-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "No_cft_envelopes_processed_-_Blob_Router"
-  alert_desc = "Triggers when Blob Router did not process single CFT envelope in last hour within SLA."
+  enabled     = var.env == "prod"
+  alert_name  = "No_cft_envelopes_processed_-_Blob_Router"
+  alert_desc  = "Triggers when Blob Router did not process single CFT envelope in last hour within SLA."
+  common_tags = var.common_tags
 
   app_insights_query = <<EOF
 traces
@@ -27,9 +28,10 @@ module "no-crime-envelopes-processed-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "No_crime_envelopes_processed_-_Blob_Router"
-  alert_desc = "Triggers when Blob Router did not process single Crime envelope in last hour within SLA."
+  enabled     = var.env == "prod"
+  alert_name  = "No_crime_envelopes_processed_-_Blob_Router"
+  alert_desc  = "Triggers when Blob Router did not process single Crime envelope in last hour within SLA."
+  common_tags = var.common_tags
 
   app_insights_query = <<EOF
 traces
@@ -51,9 +53,10 @@ module "no-pcq-envelopes-processed-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "No_pcq_envelopes_processed_-_Blob_Router"
-  alert_desc = "Triggers when Blob Router did not process single PCQ envelope in last hour within SLA."
+  enabled     = var.env == "prod"
+  alert_name  = "No_pcq_envelopes_processed_-_Blob_Router"
+  alert_desc  = "Triggers when Blob Router did not process single PCQ envelope in last hour within SLA."
+  common_tags = var.common_tags
 
   app_insights_query = <<EOF
 traces

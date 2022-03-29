@@ -4,9 +4,10 @@ module "reform-scan-exception-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Reform_Scan_exception"
-  alert_desc = "Triggers when blob router service receives at least one exception within a 15 minutes window timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Reform_Scan_exception"
+  alert_desc  = "Triggers when blob router service receives at least one exception within a 15 minutes window timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = <<EOF
 union exceptions, traces

@@ -3,9 +3,10 @@ module "blob-dispatcher-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Dispatch_Files"
-  alert_desc = "Triggers when no logs from blob-dispatcher job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Dispatch_Files"
+  alert_desc  = "Triggers when no logs from blob-dispatcher job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started blob-dispatcher job'"
 
@@ -24,9 +25,10 @@ module "delete-dispatched-files-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Delete_Dispatched_Files"
-  alert_desc = "Triggers when no logs from delete-dispatched-files job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Delete_Dispatched_Files"
+  alert_desc  = "Triggers when no logs from delete-dispatched-files job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started delete-dispatched-files job'"
 
@@ -45,9 +47,10 @@ module "handle-rejected-files-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Handle_Rejected_Files"
-  alert_desc = "Triggers when no logs from handle-rejected-files job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Handle_Rejected_Files"
+  alert_desc  = "Triggers when no logs from handle-rejected-files job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started handle-rejected-files job'"
 
@@ -69,9 +72,10 @@ module "reject-duplicates-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Reject_Duplicates"
-  alert_desc = "Triggers when no logs from reject-duplicates job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Reject_Duplicates"
+  alert_desc  = "Triggers when no logs from reject-duplicates job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started reject-duplicates job'"
 
@@ -93,9 +97,10 @@ module "delete-rejected-files-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Delete_Rejected_Files"
-  alert_desc = "Triggers when no logs from delete-rejected-files job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Delete_Rejected_Files"
+  alert_desc  = "Triggers when no logs from delete-rejected-files job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started delete-rejected-files job'"
 
@@ -117,9 +122,10 @@ module "check-new-envelopes-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Check-New-Envelopes"
-  alert_desc = "Triggers when no logs from check-new-envelopes job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Check-New-Envelopes"
+  alert_desc  = "Triggers when no logs from check-new-envelopes job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started check-new-envelopes job'"
 
@@ -139,9 +145,10 @@ module "send-notifications-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Reform-Scan-Send-Notifications"
-  alert_desc = "Triggers when no logs from send-notifications job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Reform-Scan-Send-Notifications"
+  alert_desc  = "Triggers when no logs from send-notifications job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started send-notifications job'"
 
@@ -160,9 +167,10 @@ module "send-notifications-to-scan-provider-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Reform-Scan-Pending-Notifications"
-  alert_desc = "Triggers when no logs from pending-notifications job found within timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Reform-Scan-Pending-Notifications"
+  alert_desc  = "Triggers when no logs from pending-notifications job found within timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started pending-notifications task'"
 

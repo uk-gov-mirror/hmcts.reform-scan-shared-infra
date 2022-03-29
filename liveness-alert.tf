@@ -3,9 +3,10 @@ module "blob-router-service-liveness-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Blob_Router_Service_liveness"
-  alert_desc = "Triggers when blob router service looks like being down within a 30 minutes window timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Blob_Router_Service_liveness"
+  alert_desc  = "Triggers when blob router service looks like being down within a 30 minutes window timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = <<EOF
 requests
@@ -28,9 +29,10 @@ module "reform-scan-notification-service-liveness-alert" {
   location          = azurerm_application_insights.appinsights.location
   app_insights_name = azurerm_application_insights.appinsights.name
 
-  enabled    = var.env == "prod"
-  alert_name = "Reform_Scan_Notification_Service_liveness"
-  alert_desc = "Triggers when reform scan notification service looks like being down within a 30 minutes window timeframe."
+  enabled     = var.env == "prod"
+  alert_name  = "Reform_Scan_Notification_Service_liveness"
+  alert_desc  = "Triggers when reform scan notification service looks like being down within a 30 minutes window timeframe."
+  common_tags = var.common_tags
 
   app_insights_query = <<EOF
 requests
