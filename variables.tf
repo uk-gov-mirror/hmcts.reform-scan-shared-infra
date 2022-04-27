@@ -44,3 +44,11 @@ variable "external_hostname" {
 variable "enable_staging_account" {
   default = 0
 }
+
+variable "storage_account_repl_type" {
+  default = "LRS"
+}
+
+variable "staging_storage_account_repl_type" {
+  default = "LRS"
+}
