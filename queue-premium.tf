@@ -43,3 +43,37 @@ resource "azurerm_key_vault_secret" "notification_queue_listen_access_key_premiu
   value        = module.notifications-queue-premium.primary_listen_shared_access_key
   key_vault_id = module.vault.key_vault_id
 }
+
+module "notifications-staging-queue-premium" {
+source                                  = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
+name                                    = "notifications-staging"
+namespace_name                          = module.queue-namespace-premium.name
+resource_group_name                     = azurerm_resource_group.rg.name
+lock_duration                           = "PT5M"
+requires_duplicate_detection            = true
+duplicate_detection_history_time_window = "PT59M"
+}
+
+resource "azurerm_key_vault_secret" "notifications_staging_queue_send_conn_str_premium" {
+key_vault_id = module.vault.key_vault_id
+name         = "notifications-staging-queue-send-connection-string-premium"
+value        = module.notifications-staging-queue-premium.primary_send_connection_string
+}
+
+resource "azurerm_key_vault_secret" "notifications_staging_queue_listen_conn_str_premium" {
+key_vault_id = module.vault.key_vault_id
+name         = "notifications-staging-queue-listen-connection-string-premium"
+value        = module.notifications-staging-queue-premium.primary_listen_connection_string
+}
+
+resource "azurerm_key_vault_secret" "notification_staging_queue_send_access_key_premium" {
+name         = "notification-staging-queue-send-shared-access-key-premium"
+value        = module.notifications-staging-queue-premium.primary_send_shared_access_key
+key_vault_id = module.vault.key_vault_id
+}
+
+resource "azurerm_key_vault_secret" "notification_staging_queue_listen_access_key_premium" {
+name         = "notification-staging-queue-listen-shared-access-key-premium"
+value        = module.notifications-staging-queue-premium.primary_listen_shared_access_key
+key_vault_id = module.vault.key_vault_id
+}
