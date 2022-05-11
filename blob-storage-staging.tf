@@ -3,7 +3,7 @@ locals {
   account_name_stg      = "${local.stripped_product_stg}${var.env}staging"
   prod_hostname_stg     = "${local.stripped_product_stg}stg.${var.external_hostname}"
   nonprod_hostname_stg  = "${local.stripped_product_stg}stg.${var.env}.${var.external_hostname}"
-  external_hostname_stg = "${var.env == "prod" ? local.prod_hostname_stg : local.nonprod_hostname_stg}"
+  external_hostname_stg = var.env == "prod" ? local.prod_hostname_stg : local.nonprod_hostname_stg
 
   // for each client service two containers are created: one named after the service
   // and another one, named {service_name}-rejected, for storing envelopes rejected by process
@@ -17,6 +17,8 @@ resource "azurerm_storage_account" "storage_account_staging" {
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = var.staging_storage_account_repl_type
+
+  allow_nested_items_to_be_public = false
 
   network_rules {
     virtual_network_subnet_ids = [

@@ -17,7 +17,7 @@ variable "subscription" {}
 variable "mgmt_subscription_id" {}
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 variable "tenant_id" {}
@@ -44,6 +44,8 @@ variable "external_hostname" {
 variable "enable_staging_account" {
   default = 0
 }
+
+variable "aks_subscription_id" {}
 
 variable "storage_account_repl_type" {
   default = "LRS"

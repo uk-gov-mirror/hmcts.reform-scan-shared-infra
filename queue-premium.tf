@@ -1,4 +1,8 @@
 module "queue-namespace-premium" {
+  providers = {
+    azurerm.private_endpoint = azurerm.private_endpoint
+  }
+
   source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=master"
   name                = "${local.product}-servicebus-${var.env}-premium"
   location            = var.location
@@ -11,7 +15,7 @@ module "queue-namespace-premium" {
 }
 
 module "notifications-queue-premium" {
-  source                                  = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
+  source                                  = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=DTSPO-6371_azurerm_upgrade"
   name                                    = "notifications"
   namespace_name                          = module.queue-namespace-premium.name
   resource_group_name                     = azurerm_resource_group.rg.name

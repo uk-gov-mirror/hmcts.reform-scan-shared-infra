@@ -5,7 +5,9 @@
 def product = 'reform-scan'
 
 withInfraPipeline(product) {
+  def branchesToSync = ['demo', 'perftest']
 
+  syncBranchesWithMaster(branchesToSync)
   enableSlackNotifications('#bsp-build-notices')
 
 }
