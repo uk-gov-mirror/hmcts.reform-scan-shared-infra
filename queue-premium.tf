@@ -15,7 +15,7 @@ module "queue-namespace-premium" {
 }
 
 module "notifications-queue-premium" {
-  source                                  = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=DTSPO-6371_azurerm_upgrade"
+  source                                  = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
   name                                    = "notifications"
   namespace_name                          = module.queue-namespace-premium.name
   resource_group_name                     = azurerm_resource_group.rg.name
