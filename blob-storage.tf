@@ -9,7 +9,7 @@ locals {
   aks_env              = var.env == "sandbox" ? "sbox" : var.env
   // for each client service two containers are created: one named after the service
   // and another one, named {service_name}-rejected, for storing envelopes rejected by process
-  client_containers = ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "nfd", "finrem", "pcq", "probate", "sscs", "publiclaw", "privatelaw"]
+  client_containers = ["bulkscanauto", "bulkscan", "cmc", "crime", "divorce", "nfd", "finrem", "pcq", "probate", "sscs", "publiclaw", "privatelaw", "adoption"]
 
   common_subnets = [
     data.azurerm_subnet.scan_storage_subnet.id,
