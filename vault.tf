@@ -10,6 +10,7 @@ module "vault" {
   managed_identity_object_ids = [var.managed_identity_object_id, var.managed_identity_api_mgmt]
   common_tags                 = var.common_tags
   managed_identity_object_id  = var.managed_identity_object_id
+  create_managed_identity     = true
 }
 
 # data "azurerm_key_vault" "key_vault" {
