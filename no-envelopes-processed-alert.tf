@@ -13,13 +13,13 @@ traces
 | where message startswith "No Envelopes created in CFT"
 EOF
 
-  frequency_in_minutes       = 60
-  time_window_in_minutes     = 60
+  frequency_in_minutes       = "60"
+  time_window_in_minutes     = "60"
   severity_level             = "4"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Blob Router - No CFT envelopes processed"
   trigger_threshold_operator = "GreaterThan"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -38,13 +38,13 @@ traces
 | where message startswith "No Envelopes created in Crime"
 EOF
 
-  frequency_in_minutes       = 60
-  time_window_in_minutes     = 60
+  frequency_in_minutes       = "60"
+  time_window_in_minutes     = "60"
   severity_level             = "4"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Blob Router - No Crime envelopes processed"
   trigger_threshold_operator = "GreaterThan"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -63,12 +63,12 @@ traces
 | where message startswith "No Envelopes created in PCQ"
 EOF
 
-  frequency_in_minutes       = 60
-  time_window_in_minutes     = 60
+  frequency_in_minutes       = "60"
+  time_window_in_minutes     = "60"
   severity_level             = "4"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Blob Router - No PCQ envelopes processed"
   trigger_threshold_operator = "GreaterThan"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }

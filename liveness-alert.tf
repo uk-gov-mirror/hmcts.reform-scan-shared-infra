@@ -14,13 +14,13 @@ requests
 | where cloud_RoleName == "Blob Router Service"
 EOF
 
-  frequency_in_minutes       = 15
-  time_window_in_minutes     = 16
+  frequency_in_minutes       = "15"
+  time_window_in_minutes     = "16"
   severity_level             = "2"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Blob Router Service liveness"
   trigger_threshold_operator = "GreaterThan"
-  trigger_threshold          = 10
+  trigger_threshold          = "10"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -40,12 +40,12 @@ requests
 | where cloud_RoleName == "Reform Scan Notification Service"
 EOF
 
-  frequency_in_minutes       = 15
-  time_window_in_minutes     = 16
+  frequency_in_minutes       = "15"
+  time_window_in_minutes     = "16"
   severity_level             = "2"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan Notification Service liveness"
   trigger_threshold_operator = "GreaterThan"
-  trigger_threshold          = 10
+  trigger_threshold          = "10"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }

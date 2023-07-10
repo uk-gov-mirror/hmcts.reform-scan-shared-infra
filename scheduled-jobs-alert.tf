@@ -10,13 +10,13 @@ module "blob-dispatcher-alert" {
 
   app_insights_query = "traces | where message startswith 'Started blob-dispatcher job'"
 
-  frequency_in_minutes       = 30
-  time_window_in_minutes     = 30
+  frequency_in_minutes       = "30"
+  time_window_in_minutes     = "30"
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan blob-dispatcher scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -32,13 +32,13 @@ module "delete-dispatched-files-alert" {
 
   app_insights_query = "traces | where message startswith 'Started delete-dispatched-files job'"
 
-  frequency_in_minutes       = 120
-  time_window_in_minutes     = 120
+  frequency_in_minutes       = "120"
+  time_window_in_minutes     = "120"
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan delete-dispatched-files scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -55,15 +55,15 @@ module "handle-rejected-files-alert" {
   app_insights_query = "traces | where message startswith 'Started handle-rejected-files job'"
 
   # running every hour and checking for 25 hours time window ensures early alert
-  frequency_in_minutes = 60
+  frequency_in_minutes = "60"
   # 60 * 25 hours = 1500 min
-  time_window_in_minutes = 1500
+  time_window_in_minutes = "1500"
 
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan handle-rejected-files scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -80,15 +80,15 @@ module "reject-duplicates-alert" {
   app_insights_query = "traces | where message startswith 'Started reject-duplicates job'"
 
   # running every hour and checking for 25 hours time window ensures early alert
-  frequency_in_minutes = 60
+  frequency_in_minutes = "60"
   # 60 * 25 hours = 1500 min
-  time_window_in_minutes = 1500
+  time_window_in_minutes = "1500"
 
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan reject-duplicates scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -105,15 +105,15 @@ module "delete-rejected-files-alert" {
   app_insights_query = "traces | where message startswith 'Started delete-rejected-files job'"
 
   # running every hour and checking for 25 hours time window ensures early alert
-  frequency_in_minutes = 60
+  frequency_in_minutes = "60"
   # 60 * 25 hours = 1500 min
-  time_window_in_minutes = 1500
+  time_window_in_minutes = "1500"
 
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan delete-rejected-files scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -129,14 +129,14 @@ module "check-new-envelopes-alert" {
 
   app_insights_query = "traces | where message startswith 'Started check-new-envelopes job'"
 
-  frequency_in_minutes   = 60
-  time_window_in_minutes = 60
+  frequency_in_minutes   = "60"
+  time_window_in_minutes = "60"
 
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan check-new-envelopes scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -152,13 +152,13 @@ module "send-notifications-alert" {
 
   app_insights_query = "traces | where message startswith 'Started send-notifications job'"
 
-  frequency_in_minutes       = 20
-  time_window_in_minutes     = 30
+  frequency_in_minutes       = "20"
+  time_window_in_minutes     = "30"
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan send-notifications scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
 
@@ -175,12 +175,12 @@ module "send-notifications-to-scan-provider-alert" {
   app_insights_query = "traces | where message startswith 'Started pending-notifications task'"
 
   # task delay is 30min for prod. adding extra 5 min for telemetry lag
-  frequency_in_minutes       = 30
-  time_window_in_minutes     = 35
+  frequency_in_minutes       = "30"
+  time_window_in_minutes     = "35"
   severity_level             = "1"
   action_group_name          = module.alert-action-group.action_group_name
   custom_email_subject       = "Reform Scan pending-notifications scheduled job alert"
   trigger_threshold_operator = "Equal"
-  trigger_threshold          = 0
+  trigger_threshold          = "0"
   resourcegroup_name         = azurerm_resource_group.rg.name
 }
