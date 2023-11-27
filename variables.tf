@@ -50,3 +50,12 @@ variable "storage_account_repl_type" {
 variable "staging_storage_account_repl_type" {
   default = "LRS"
 }
+
+variable "sku_service_bus" {
+  description = "Basic, Standard or Premium"
+  default     = "Standard"
+}
+
+variable "zone_redundant_service_bus" {
+  default = false
+}
