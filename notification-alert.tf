@@ -1,12 +1,11 @@
 module "reform-scan-notifications-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
-
-  enabled     = var.env == "prod"
-  alert_name  = "Reform_Scan_notification"
-  alert_desc  = "Triggers when notification service receives at least 5 notifications within a 30 minutes window timeframe."
-  common_tags = var.common_tags
+  location          = var.location
+  app_insights_name = module.application_insights.name
+  enabled           = var.env == "prod"
+  alert_name        = "Reform_Scan_notification"
+  alert_desc        = "Triggers when notification service receives at least 5 notifications within a 30 minutes window timeframe."
+  common_tags       = var.common_tags
 
   app_insights_query = "traces | where message startswith 'Started processing notification message'"
 

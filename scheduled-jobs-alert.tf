@@ -1,7 +1,7 @@
 module "blob-dispatcher-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Dispatch_Files"
@@ -22,8 +22,8 @@ module "blob-dispatcher-alert" {
 
 module "delete-dispatched-files-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Delete_Dispatched_Files"
@@ -44,8 +44,8 @@ module "delete-dispatched-files-alert" {
 
 module "handle-rejected-files-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Handle_Rejected_Files"
@@ -69,8 +69,8 @@ module "handle-rejected-files-alert" {
 
 module "reject-duplicates-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Reject_Duplicates"
@@ -94,8 +94,8 @@ module "reject-duplicates-alert" {
 
 module "delete-rejected-files-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Delete_Rejected_Files"
@@ -119,8 +119,8 @@ module "delete-rejected-files-alert" {
 
 module "check-new-envelopes-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Check-New-Envelopes"
@@ -142,8 +142,8 @@ module "check-new-envelopes-alert" {
 
 module "send-notifications-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Reform-Scan-Send-Notifications"
@@ -164,8 +164,8 @@ module "send-notifications-alert" {
 
 module "send-notifications-to-scan-provider-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "Reform-Scan-Pending-Notifications"

@@ -1,7 +1,7 @@
 module "no-cft-envelopes-processed-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "No_cft_envelopes_processed_-_Blob_Router"
@@ -25,8 +25,8 @@ EOF
 
 module "no-crime-envelopes-processed-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "No_crime_envelopes_processed_-_Blob_Router"
@@ -50,8 +50,8 @@ EOF
 
 module "no-pcq-envelopes-processed-alert" {
   source            = "git@github.com:hmcts/cnp-module-metric-alert"
-  location          = azurerm_application_insights.appinsights.location
-  app_insights_name = azurerm_application_insights.appinsights.name
+  location          = var.location
+  app_insights_name = module.application_insights.name
 
   enabled     = var.env == "prod"
   alert_name  = "No_pcq_envelopes_processed_-_Blob_Router"
