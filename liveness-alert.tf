@@ -1,5 +1,5 @@
 module "blob-router-service-liveness-alert" {
-  source = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=4.x"
   location          = var.location
   app_insights_name = module.application_insights.name
 
