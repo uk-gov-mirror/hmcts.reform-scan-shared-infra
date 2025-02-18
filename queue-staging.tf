@@ -1,5 +1,5 @@
 module "notifications-staging-queue" {
-  source                                  = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=master"
+  source                                  = "git@github.com:hmcts/terraform-module-servicebus-queue?ref=4.x"
   name                                    = "notifications-staging"
   namespace_name                          = module.queue-namespace-premium.name
   resource_group_name                     = azurerm_resource_group.rg.name
