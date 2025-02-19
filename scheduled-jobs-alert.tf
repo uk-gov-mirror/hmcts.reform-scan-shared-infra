@@ -21,7 +21,7 @@ module "blob-dispatcher-alert" {
 }
 
 module "delete-dispatched-files-alert" {
-  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  source            = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
   location          = var.location
   app_insights_name = module.application_insights.name
 
@@ -43,7 +43,7 @@ module "delete-dispatched-files-alert" {
 }
 
 module "handle-rejected-files-alert" {
-  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  source            = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
   location          = var.location
   app_insights_name = module.application_insights.name
 
@@ -68,7 +68,7 @@ module "handle-rejected-files-alert" {
 }
 
 module "reject-duplicates-alert" {
-  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  source            = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
   location          = var.location
   app_insights_name = module.application_insights.name
 
@@ -93,7 +93,7 @@ module "reject-duplicates-alert" {
 }
 
 module "delete-rejected-files-alert" {
-  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  source            = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
   location          = var.location
   app_insights_name = module.application_insights.name
 
@@ -118,7 +118,7 @@ module "delete-rejected-files-alert" {
 }
 
 module "check-new-envelopes-alert" {
-  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  source            = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
   location          = var.location
   app_insights_name = module.application_insights.name
 
@@ -141,7 +141,7 @@ module "check-new-envelopes-alert" {
 }
 
 module "send-notifications-alert" {
-  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  source            = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
   location          = var.location
   app_insights_name = module.application_insights.name
 
@@ -163,7 +163,7 @@ module "send-notifications-alert" {
 }
 
 module "send-notifications-to-scan-provider-alert" {
-  source            = "git@github.com:hmcts/cnp-module-metric-alert"
+  source            = "git::https://github.com/hmcts/cnp-module-metric-alert.git"
   location          = var.location
   app_insights_name = module.application_insights.name
 
