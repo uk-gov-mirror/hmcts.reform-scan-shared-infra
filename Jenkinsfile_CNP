@@ -9,5 +9,4 @@ withInfraPipeline(product) {
 
   syncBranchesWithMaster(branchesToSync)
   enableSlackNotifications('#bsp-build-notices')
-
 }
