@@ -40,11 +40,11 @@ resource "azurerm_storage_account" "storage_account" {
   #     use_subdomain = "false"
   #   }
 
-  network_rules {
-    virtual_network_subnet_ids = local.vnets_to_allow_access
-    bypass                     = ["Logging", "Metrics", "AzureServices"]
-    default_action             = "Deny"
-  }
+  # network_rules {
+  #   virtual_network_subnet_ids = local.vnets_to_allow_access
+  #   bypass                     = ["Logging", "Metrics", "AzureServices"]
+  #   default_action             = "Deny"
+  # }
 
   tags = local.tags
 }
