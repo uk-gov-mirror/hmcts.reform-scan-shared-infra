@@ -1,5 +1,5 @@
 module "vault" {
-  source                      = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
+  source                      = "git@github.com:hmcts/cnp-module-key-vault?ref=DTSPO-31965/remove-jenkins-ptl-access"
   name                        = "${var.product}-${var.env}"
   product                     = var.product
   env                         = var.env
@@ -11,6 +11,7 @@ module "vault" {
   common_tags                 = var.common_tags
   managed_identity_object_ids = [var.managed_identity_cft_api_mgmt]
   create_managed_identity     = true
+  grant_preview_jenkins_access = var.env == "aat" // cft apps only
 }
 
 output "vaultName" {

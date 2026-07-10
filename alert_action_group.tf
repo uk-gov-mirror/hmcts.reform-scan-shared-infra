@@ -7,6 +7,7 @@ module "alert-action-group" {
   source   = "git@github.com:hmcts/cnp-module-action-group"
   location = "global"
   env      = var.env
+  tags     = local.tags
 
   resourcegroup_name     = azurerm_resource_group.rg.name
   action_group_name      = "Reform Scan Alert (${var.env})"
